@@ -1,0 +1,4 @@
+
+pandas
+sdv==1.7.0
+scikit-learn

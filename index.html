@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Synthetic Clinical Data Toolkit</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f9; color: #333; }
+        h1 { color: #205081; }
+        .container { max-width: 800px; margin: auto; }
+        .card { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        code { background-color: #eee; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Synthetic Clinical Data Toolkit</h1>
+        <div class="card">
+            <p><strong>This toolkit enables generation of realistic, privacy-preserving synthetic clinical datasets for MDR modeling and stewardship research.</strong></p>
+            <ul>
+                <li>Generate data using <code>GaussianCopula</code> or <code>CTGAN</code></li>
+                <li>Validate distributions, correlations, clustering (PCA, t-SNE)</li>
+                <li>Ready for Google Colab and offline use</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Quick Start (Google Colab)</h3>
+            <pre>pip install -r requirements.txt
+python generate_synthetic.py --input your_data.csv --output synthetic_data.csv --method gaussian</pre>
+        </div>
+        <div class="card">
+            <p>View source on <a href="https://github.com/InfectionAnalyzer/synthetic-mdr-clinical" target="_blank">GitHub</a></p>
+        </div>
+    </div>
+</body>
+</html>
