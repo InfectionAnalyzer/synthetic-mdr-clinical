@@ -1,19 +1,19 @@
 name: Nightly Synthetic Data Generator
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:       # Manual trigger via GitHub UI
   schedule:
-    - cron: '0 2 * * *'  # 2:00 AM UTC daily
+    - cron: '0 2 * * *'     # Automatic run daily at 2:00 AM UTC
 
 permissions:
-  contents: write
+  contents: write           # Enables git push from action
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -25,17 +25,14 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Generate synthetic data
+      - name: Run Synthetic Data Generator
         run: |
           python generate_synthetic.py --input demo_clinical_dataset.csv --output synthetic_output_nightly.csv
 
-      - name: Commit new synthetic data
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit updated synthetic data
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git pull origin main
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
           git add synthetic_output_nightly.csv
-          git commit -m "Nightly synthetic data update" || echo "No changes to commit"
-          git push origin HEAD:main
+          git commit -m "Nightly synthetic data update"
+          git push
